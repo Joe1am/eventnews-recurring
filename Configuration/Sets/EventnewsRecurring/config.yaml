@@ -1,0 +1,4 @@
+name: spielerj/eventnews-recurring
+label: Eventnews Recurring
+dependencies:
+  - georgringer/news

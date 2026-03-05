@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2024-01-01T00:00:00Z" product-name="eventnews_recurring">
+		<header/>
+		<body>
+			<trans-unit id="tx_news_domain_model_news.recurring_event">
+				<source>Recurring Event</source>
+				<target>Wiederkehrende Veranstaltung</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_type">
+				<source>Recurrence Pattern</source>
+				<target>Wiederholungsmuster</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_type.hourly">
+				<source>Hourly</source>
+				<target>stündlich</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_type.minutely">
+				<source>Minutely</source>
+				<target>minütlich</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_type.daily">
+				<source>Daily</source>
+				<target>täglich</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_type.weekly">
+				<source>Weekly</source>
+				<target>wöchentlich</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_type.monthly">
+				<source>Monthly</source>
+				<target>monatlich</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_type.yearly">
+				<source>Yearly</source>
+				<target>jährlich</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_interval">
+				<source>Repeat Every</source>
+				<target>Wiederholen alle</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_days">
+				<source>Repeat On Days</source>
+				<target>Wiederholung an Tagen</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_until">
+				<source>Repeat Until</source>
+				<target>Wiederholen bis</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_count">
+				<source>Number of Occurrences</source>
+				<target>Anzahl der Wiederholungen</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_type.description">
+				<source>Determines how the event repeats: daily, weekly, monthly, yearly, or at a fixed hourly/minutely interval.</source>
+				<target>Legt das Wiederholungsmuster fest: täglich, wöchentlich, monatlich, jährlich oder in einem festen stündlichen/minütlichen Intervall.</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_interval.description">
+				<source>The step between occurrences. Example: 2 with "Weekly" repeats every 2 weeks; 30 with "Minutely" and a time range repeats every 30 minutes within that window.</source>
+				<target>Der Abstand zwischen den Terminen. Beispiel: 2 bei „Wöchentlich" bedeutet alle 2 Wochen; 30 bei „Minütlich" mit Zeitbereich bedeutet alle 30 Minuten innerhalb des Fensters.</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_days.description">
+				<source>Restrict the recurrence to specific weekdays.</source>
+				<target>Schränkt die Wiederholung auf bestimmte Wochentage ein.</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_until.description">
+				<source>Optional end date after which no further occurrences are generated. Leave empty to use the occurrence count or the 2-year safety limit.</source>
+				<target>Optionales Enddatum, nach dem keine weiteren Termine mehr erzeugt werden. Leer lassen, um die Anzahl der Wiederholungen oder das 2-Jahres-Limit zu verwenden.</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_count.description">
+				<source>Leave 0 for unlimited occurrences (limited by "Repeat Until" date or 2 years)</source>
+				<target>0 für unbegrenzte Wiederholungen (begrenzt durch "Wiederholen bis" Datum oder 2 Jahre)</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_exclude_dates.description">
+				<source>Individual dates to skip, even if the recurrence pattern would generate an occurrence on that day.</source>
+				<target>Einzelne Daten, an denen kein Termin stattfindet, auch wenn das Wiederholungsmuster einen Termin erzeugen würde.</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_time_ranges.description">
+				<source>Active time windows for hourly or minutely recurrence. Occurrences are only generated when their start time falls within one of these ranges. Example: 08:00–12:00, 14:00–18:00.</source>
+				<target>Aktive Zeitfenster für stündliche oder minütliche Wiederholungen. Termine werden nur erzeugt, wenn ihre Startzeit in einem dieser Bereiche liegt. Beispiel: 08:00–12:00, 14:00–18:00.</target>
+			</trans-unit>
+      <trans-unit id="tx_news_domain_model_news.recurring_exclude_dates">
+				<source>Excluded Dates</source>
+				<target>Ausgeschlossene Daten</target>
+			</trans-unit>			<trans-unit id="tx_news_domain_model_news.recurring_exclude_dates.open_picker">
+				<source>Open date picker</source>
+				<target>Datumsauswahl öffnen</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_exclude_dates.add">
+				<source>Add date</source>
+				<target>Datum hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_exclude_dates.remove">
+				<source>Remove date</source>
+				<target>Datum entfernen</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_time_ranges">
+				<source>Time Ranges</source>
+				<target>Zeitbereiche</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_time_ranges.add">
+				<source>Add time range</source>
+				<target>Zeitbereich hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_time_ranges.remove">
+				<source>Remove time range</source>
+				<target>Zeitbereich entfernen</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_time_ranges.from">
+				<source>From</source>
+				<target>Von</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_time_ranges.to">
+				<source>To</source>
+				<target>Bis</target>
+			</trans-unit>
+      <trans-unit id="palette.recurring_settings">
+				<source>Recurrence Settings</source>
+				<target>Wiederholungseinstellungen</target>
+			</trans-unit>
+			<trans-unit id="day.monday">
+				<source>Monday</source>
+				<target>Montag</target>
+			</trans-unit>
+			<trans-unit id="day.tuesday">
+				<source>Tuesday</source>
+				<target>Dienstag</target>
+			</trans-unit>
+			<trans-unit id="day.wednesday">
+				<source>Wednesday</source>
+				<target>Mittwoch</target>
+			</trans-unit>
+			<trans-unit id="day.thursday">
+				<source>Thursday</source>
+				<target>Donnerstag</target>
+			</trans-unit>
+			<trans-unit id="day.friday">
+				<source>Friday</source>
+				<target>Freitag</target>
+			</trans-unit>
+			<trans-unit id="day.saturday">
+				<source>Saturday</source>
+				<target>Samstag</target>
+			</trans-unit>
+			<trans-unit id="day.sunday">
+				<source>Sunday</source>
+				<target>Sonntag</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_exclude_school_holidays">
+				<source>Exclude school holidays</source>
+				<target>Schulferien ausschließen</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_exclude_public_holidays">
+				<source>Exclude public holidays</source>
+				<target>Feiertage ausschließen</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_week">
+				<source>Monthly repeat mode</source>
+				<target>Monatlicher Wiederholungsmodus</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_week.description">
+				<source>Choose whether to repeat on a fixed date or on a specific weekday within the month.</source>
+				<target>Wählen Sie, ob die Veranstaltung an einem festen Datum oder an einem bestimmten Wochentag im Monat wiederholt wird.</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_week.bydate">
+				<source>On fixed date (e.g. every 15th)</source>
+				<target>Am festen Datum (z. B. jeden 15.)</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_week.first">
+				<source>First</source>
+				<target>Ersten</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_week.second">
+				<source>Second</source>
+				<target>Zweiten</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_week.third">
+				<source>Third</source>
+				<target>Dritten</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_week.fourth">
+				<source>Fourth</source>
+				<target>Vierten</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_week.last">
+				<source>Last</source>
+				<target>Letzten</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_weekday">
+				<source>Weekday</source>
+				<target>Wochentag</target>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.recurring_monthly_weekday.description">
+				<source>Select the weekday that applies to the chosen week position above (e.g. "Third" + "Tuesday" = every third Tuesday).</source>
+				<target>Wählen Sie den Wochentag passend zur gewählten Wochenposition (z. B. „Dritten" + „Dienstag" = jeden dritten Dienstag).</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

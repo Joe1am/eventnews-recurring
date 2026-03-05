@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="labels.xlf">
+        <body>
+            <trans-unit id="categories.EventnewsRecurring">
+                <source>Eventnews Recurring</source>
+            </trans-unit>
+            <trans-unit id="categories.EventnewsRecurring.holidays">
+                <source>Holiday Calendars</source>
+            </trans-unit>
+
+            <trans-unit id="settings.eventnewsRecurring.schoolHolidaysIcsPaths">
+                <source>School Holiday ICS Files</source>
+            </trans-unit>
+            <trans-unit id="settings.description.eventnewsRecurring.schoolHolidaysIcsPaths">
+                <source>FAL paths or URLs to school holiday ICS files (one per entry).
+FAL: e.g. `1:/holidays/schulferien-2026.ics`
+URL: e.g. `https://www.schulferien.eu/downloads/ical4.php?land=10&amp;type=1&amp;year=2026`</source>
+            </trans-unit>
+
+            <trans-unit id="settings.eventnewsRecurring.publicHolidaysIcsPaths">
+                <source>Public Holiday ICS Files</source>
+            </trans-unit>
+            <trans-unit id="settings.description.eventnewsRecurring.publicHolidaysIcsPaths">
+                <source>FAL paths or URLs to public holiday ICS files (one per entry).
+FAL: e.g. `1:/holidays/feiertage-2026.ics`
+URL: e.g. `https://www.schulferien.eu/downloads/ical4.php?land=10&amp;type=2&amp;year=2026`</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

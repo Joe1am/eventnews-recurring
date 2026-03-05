@@ -1,0 +1,17 @@
+{namespace enr=Spielerj\EventnewsRecurring\ViewHelpers}
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TYPO3/NONSGML News system (news)//EN
+<f:if condition="{newsItem}"><f:variable name="slotVevents"><enr:icsVevents event="{newsItem}" /></f:variable><f:if condition="{slotVevents}"><f:then>{slotVevents}</f:then><f:else><f:variable name="adjustedStart"><enr:adjustedStartDate event="{newsItem}" /></f:variable>BEGIN:VEVENT
+UID:news-{newsItem.uid}@kreativ-haus.de
+DTSTAMP:<f:format.date format="%Y%m%dT%H%M%SZ"><f:variable name="tzoffset">{f:format.date(date: newsItem.tstamp, format: 'Z')}</f:variable>{newsItem.tstamp.timestamp - tzoffset}</f:format.date>
+<f:if condition="{newsItem.fullDay}"><f:then>DTSTART;VALUE=DATE:<f:format.date format="%Y%m%d">{adjustedStart}</f:format.date>
+DTEND;VALUE=DATE:<f:format.date format="%Y%m%d">{adjustedStart + 86400}</f:format.date></f:then><f:else>DTSTART:<f:format.date format="%Y%m%dT%H%M%S">{adjustedStart}</f:format.date>
+DTEND:<f:format.date format="%Y%m%dT%H%M%S"><f:if condition="{newsItem.eventEnd}"><f:then><f:variable name="duration">{newsItem.eventEnd.timestamp - newsItem.datetime.timestamp}</f:variable>{adjustedStart + duration}</f:then><f:else>{adjustedStart}</f:else></f:if></f:format.date></f:else></f:if>
+SUMMARY:{newsItem.title -> f:format.htmlspecialchars()}
+DESCRIPTION:<f:if condition="{newsItem.teaser}"><f:then>{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1')}</f:then><f:else><f:format.stripTags><f:spaceless><f:format.raw>{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1')}</f:format.raw></f:spaceless></f:format.stripTags></f:else></f:if>
+LOCATION:<f:if condition="{newsItem.location}"><f:then>{newsItem.location.title}</f:then><f:else>{newsItem.locationSimple}</f:else></f:if>
+RRULE:<enr:rrule event="{newsItem}" format="rfc" />
+<f:if condition="{newsItem.recurringExcludeDates}"><f:for each="{newsItem.recurringExcludeDatesArray}" as="exDate">EXDATE:<f:format.date format="%Y%m%d">{exDate}</f:format.date><f:if condition="{newsItem.fullDay} == 0"><f:format.date format="T%H%M%S">{newsItem.datetime}</f:format.date></f:if>
+</f:for></f:if>END:VEVENT
+</f:else></f:if></f:if>END:VCALENDAR

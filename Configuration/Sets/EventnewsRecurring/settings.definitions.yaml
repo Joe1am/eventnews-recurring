@@ -1,0 +1,17 @@
+categories:
+  EventnewsRecurring:
+    label: 'Eventnews Recurring'
+  EventnewsRecurring.holidays:
+    label: 'Holiday Calendars'
+    parent: EventnewsRecurring
+
+settings:
+  eventnewsRecurring.schoolHolidaysIcsPaths:
+    type: stringlist
+    default: ['']
+    category: EventnewsRecurring.holidays
+
+  eventnewsRecurring.publicHolidaysIcsPaths:
+    type: stringlist
+    default: ['']
+    category: EventnewsRecurring.holidays

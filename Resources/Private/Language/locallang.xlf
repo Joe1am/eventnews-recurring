@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2024-01-01T00:00:00Z" product-name="eventnews_recurring">
+		<header/>
+		<body>
+			<trans-unit id="task.generate_recurring_events.title">
+				<source>Generate Recurring Event Instances</source>
+			</trans-unit>
+			<trans-unit id="task.generate_recurring_events.description">
+				<source>Regenerates instances for all recurring events based on their recurrence pattern</source>
+			</trans-unit>
+			<trans-unit id="flexforms_tab.recurring">
+				<source>Recurring Events</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.expandRecurringEvents">
+				<source>Expand recurring events</source>
+			</trans-unit>
+			<trans-unit id="rrule.every">
+				<source>every %d %s</source>
+			</trans-unit>
+			<trans-unit id="rrule.unit.minutes">
+				<source>minutes</source>
+			</trans-unit>
+			<trans-unit id="rrule.unit.hours">
+				<source>hours</source>
+			</trans-unit>
+			<trans-unit id="rrule.on">
+				<source>every</source>
+			</trans-unit>
+			<trans-unit id="rrule.and">
+				<source>and</source>
+			</trans-unit>
+			<trans-unit id="rrule.oclock">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="rrule.between">
+				<source>between</source>
+			</trans-unit>
+			<trans-unit id="rrule.except">
+				<source>except on</source>
+			</trans-unit>
+			<trans-unit id="rrule.duration">
+				<source>(duration: %d minutes)</source>
+			</trans-unit>
+			<trans-unit id="rrule.excludingSchoolHolidays">
+				<source>except during school holidays</source>
+			</trans-unit>
+			<trans-unit id="rrule.excludingPublicHolidays">
+				<source>except on public holidays</source>
+			</trans-unit>
+			<trans-unit id="rrule.excludingBothHolidays">
+				<source>except during school holidays and on public holidays</source>
+			</trans-unit>
+			<trans-unit id="rrule.alsoExcludingSchoolHolidays">
+				<source>and during school holidays</source>
+			</trans-unit>
+			<trans-unit id="rrule.alsoExcludingPublicHolidays">
+				<source>and on public holidays</source>
+			</trans-unit>
+			<trans-unit id="rrule.alsoExcludingBothHolidays">
+				<source>and during school holidays and on public holidays</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

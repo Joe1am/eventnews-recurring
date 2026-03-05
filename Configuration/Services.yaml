@@ -1,0 +1,31 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Spielerj\EventnewsRecurring\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  # Event Listener for News List Action
+  Spielerj\EventnewsRecurring\EventListener\NewsListModifyEventListener:
+    public: true
+    tags:
+      - name: event.listener
+        identifier: 'eventnews-recurring/news-list-modify'
+        event: GeorgRinger\News\Event\NewsListActionEvent
+
+  # Event Listener for Query Modification
+  Spielerj\EventnewsRecurring\EventListener\NewsListQueryModifyEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'eventnews-recurring-modifydemandrepository'
+        event: GeorgRinger\News\Event\ModifyDemandRepositoryEvent
+
+  # Event Listener for FlexForm Extension
+  Spielerj\EventnewsRecurring\EventListener\AfterFlexFormDataStructureParsedEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'eventnews-recurring/flexform-hook'
+        event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent
