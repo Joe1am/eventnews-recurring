@@ -372,6 +372,16 @@ class RecurrenceCalculator
     }
 
     /**
+     * Public wrapper – returns all excluded Y-m-d strings for use in ViewHelpers/ICS export.
+     *
+     * @return string[]
+     */
+    public function getExcludedDayStrings(News $event): array
+    {
+        return $this->collectExcludedDayStrings($event);
+    }
+
+    /**
      * Collects all excluded Y-m-d day strings for an event:
      * manual exclude dates + school/public holiday days from ICS calendars.
      *

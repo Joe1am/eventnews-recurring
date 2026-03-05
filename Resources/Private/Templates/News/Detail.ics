@@ -12,6 +12,5 @@ SUMMARY:{newsItem.title -> f:format.htmlspecialchars()}
 DESCRIPTION:<f:if condition="{newsItem.teaser}"><f:then>{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1')}</f:then><f:else><f:format.stripTags><f:spaceless><f:format.raw>{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1')}</f:format.raw></f:spaceless></f:format.stripTags></f:else></f:if>
 LOCATION:<f:if condition="{newsItem.location}"><f:then>{newsItem.location.title}</f:then><f:else>{newsItem.locationSimple}</f:else></f:if>
 RRULE:<enr:rrule event="{newsItem}" format="rfc" />
-<f:if condition="{newsItem.recurringExcludeDates}"><f:for each="{newsItem.recurringExcludeDatesArray}" as="exDate">EXDATE:<f:format.date format="%Y%m%d">{exDate}</f:format.date><f:if condition="{newsItem.fullDay} == 0"><f:format.date format="T%H%M%S">{newsItem.datetime}</f:format.date></f:if>
-</f:for></f:if>END:VEVENT
+<enr:icsExdates event="{newsItem}" />END:VEVENT
 </f:else></f:if></f:if>END:VCALENDAR
