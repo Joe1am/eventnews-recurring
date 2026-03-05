@@ -55,6 +55,16 @@ School and public holiday calendars are configured per site via TYPO3 Site Setti
 
 The ICS files are fetched and cached. Any `DATE`-type entries (full-day entries) are used as the exclusion basis — no `RRULE` parsing required, making it compatible with standard German holiday ICS feeds.
 
+### Plugin Setting: Expand Recurring Events
+
+For recurring events to appear as individual occurrences in **list views**, you must enable the option in the news plugin:
+
+Navigate to the **news plugin** (content element) → **Tab "Plug-In"** → **"Recurring Events"** and check **"Expand recurring events"** (`settings.expandRecurringEvents`).
+
+![Plugin setting: Expand recurring events](Documentation/Images/plugin-expand-recurring.png)
+
+Without this checkbox, only the original event record is listed — the individual recurrence dates are not expanded.
+
 ## Backend Fields
 
 | Field | Description |
@@ -71,6 +81,9 @@ The ICS files are fetched and cached. Any `DATE`-type entries (full-day entries)
 | Exclude dates | Manually excluded individual dates |
 | Exclude school holidays | Skip occurrences during school holidays |
 | Exclude public holidays | Skip occurrences on public holidays |
+
+![Backend view of a recurring event](Documentation/Images/backend-recurring-event.png)
+*Backend view of a recurring event with weekly recurrence pattern*
 
 ## Usage
 
@@ -117,10 +130,23 @@ For hourly/minutely events with time windows, use this ViewHelper to generate in
 
 Each time slot becomes a separate `VEVENT` with its own `DTSTART`, `DTEND`, and a shared `RRULE`. Excluded dates are emitted as `EXDATE` lines.
 
-## Screenshot
+### IcsExdatesViewHelper
 
-![Backend view of a recurring event](Documentation/Images/backend-recurring-event.png)
-*Backend view of a recurring event with weekly recurrence pattern*
+Required in `.ics` templates to output all `EXDATE` lines for a recurring event. Covers both manually excluded dates **and** days excluded via school/public holiday ICS feeds. Without this ViewHelper, holiday exclusions will not appear in the exported calendar file.
+
+```html
+<enr:icsExdates event="{newsItem}" />
+```
+
+Place it inside the `VEVENT` block, after the `RRULE` line:
+
+```
+RRULE:FREQ=WEEKLY;UNTIL=...;BYDAY=TU
+<enr:icsExdates event="{newsItem}" />
+END:VEVENT
+```
+
+Each excluded date is rendered as a separate `EXDATE` line. Full-day events use `EXDATE;VALUE=DATE:YYYYMMDD`, timed events use `EXDATE:YYYYMMDDTHHmmss`. Dates beyond the `RRULE` `UNTIL` date are automatically omitted.
 
 ## Credits
 
