@@ -90,27 +90,6 @@
 			<trans-unit id="palette.recurring_settings">
 				<source>Recurrence Settings</source>
 			</trans-unit>
-			<trans-unit id="day.monday">
-				<source>Monday</source>
-			</trans-unit>
-			<trans-unit id="day.tuesday">
-				<source>Tuesday</source>
-			</trans-unit>
-			<trans-unit id="day.wednesday">
-				<source>Wednesday</source>
-			</trans-unit>
-			<trans-unit id="day.thursday">
-				<source>Thursday</source>
-			</trans-unit>
-			<trans-unit id="day.friday">
-				<source>Friday</source>
-			</trans-unit>
-			<trans-unit id="day.saturday">
-				<source>Saturday</source>
-			</trans-unit>
-			<trans-unit id="day.sunday">
-				<source>Sunday</source>
-			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.recurring_exclude_school_holidays">
 				<source>Exclude school holidays</source>
 			</trans-unit>

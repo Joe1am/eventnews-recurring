@@ -118,34 +118,6 @@
 				<source>Recurrence Settings</source>
 				<target>Wiederholungseinstellungen</target>
 			</trans-unit>
-			<trans-unit id="day.monday">
-				<source>Monday</source>
-				<target>Montag</target>
-			</trans-unit>
-			<trans-unit id="day.tuesday">
-				<source>Tuesday</source>
-				<target>Dienstag</target>
-			</trans-unit>
-			<trans-unit id="day.wednesday">
-				<source>Wednesday</source>
-				<target>Mittwoch</target>
-			</trans-unit>
-			<trans-unit id="day.thursday">
-				<source>Thursday</source>
-				<target>Donnerstag</target>
-			</trans-unit>
-			<trans-unit id="day.friday">
-				<source>Friday</source>
-				<target>Freitag</target>
-			</trans-unit>
-			<trans-unit id="day.saturday">
-				<source>Saturday</source>
-				<target>Samstag</target>
-			</trans-unit>
-			<trans-unit id="day.sunday">
-				<source>Sunday</source>
-				<target>Sonntag</target>
-			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.recurring_exclude_school_holidays">
 				<source>Exclude school holidays</source>
 				<target>Schulferien ausschließen</target>
