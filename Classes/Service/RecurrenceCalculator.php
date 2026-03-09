@@ -453,30 +453,21 @@ class RecurrenceCalculator
         }
 
         $recurringType = $event->getRecurringType();
-        $occHour    = (int)$occStart->format('H');
-        $occMinutes = $occHour * 60 + (int)$occStart->format('i');
-
-        // For minutely: compute the highest minute slot per hour
-        $maxMinuteSlot = 0;
-        if ($recurringType === 'minutely') {
-            $step = max(1, (int)$event->getRecurringInterval());
-            for ($m = 0; $m < 60; $m += $step) {
-                $maxMinuteSlot = $m;
-            }
-        }
+        $occMinutes = (int)$occStart->format('H') * 60 + (int)$occStart->format('i');
+        $step = max(1, (int)$event->getRecurringInterval());
 
         foreach ($timeRanges as $range) {
             $fromParts   = explode(':', $range['from']);
             $toParts     = explode(':', $range['to']);
             $fromMinutes = (int)$fromParts[0] * 60 + (int)($fromParts[1] ?? 0);
             $toMinutes   = (int)$toParts[0]   * 60 + (int)($toParts[1]   ?? 0);
-            if ($recurringType === 'minutely') {
-                // Valid when: occurrence starts in window AND last minute-slot fits too
-                if ($occMinutes >= $fromMinutes && $occHour * 60 + $maxMinuteSlot <= $toMinutes) {
-                    return true;
-                }
-            } else {
-                if ($occMinutes >= $fromMinutes && $occMinutes <= $toMinutes) {
+            if ($occMinutes >= $fromMinutes && $occMinutes <= $toMinutes) {
+                if ($recurringType === 'minutely') {
+                    // Check that occurrence aligns with the interval from range start
+                    if (($occMinutes - $fromMinutes) % $step === 0) {
+                        return true;
+                    }
+                } else {
                     return true;
                 }
             }
@@ -547,27 +538,23 @@ class RecurrenceCalculator
             return !empty($hourSlots) ? ['BYHOUR' => $hourSlots, 'INTERVAL' => 1] : [];
         }
 
-        // minutely
+        // minutely: compute actual total-minute slots across the full time range
+        $hourSlots   = [];
         $minuteSlots = [];
-        for ($m = 0; $m < 60; $m += $step) {
-            $minuteSlots[] = $m;
-        }
-        $maxMinuteSlot = !empty($minuteSlots) ? max($minuteSlots) : 0;
-
-        $hourSlots = [];
         foreach ($timeRanges as $range) {
-            $fromHour  = (int)(explode(':', $range['from'])[0] ?? 0);
+            $fromParts = explode(':', $range['from']);
             $toParts   = explode(':', $range['to']);
-            $toHour    = (int)($toParts[0] ?? 0);
-            $toMinutes = (int)($toParts[0] ?? 0) * 60 + (int)($toParts[1] ?? 0);
-            for ($h = $fromHour; $h <= $toHour; $h++) {
-                if ($h * 60 + $maxMinuteSlot <= $toMinutes) {
-                    $hourSlots[] = $h;
-                }
+            $fromTotal = (int)($fromParts[0] ?? 0) * 60 + (int)($fromParts[1] ?? 0);
+            $toTotal   = (int)($toParts[0]   ?? 0) * 60 + (int)($toParts[1]   ?? 0);
+            for ($total = $fromTotal; $total <= $toTotal; $total += $step) {
+                $hourSlots[]   = intdiv($total, 60);
+                $minuteSlots[] = $total % 60;
             }
         }
         sort($hourSlots);
-        $hourSlots = array_values(array_unique($hourSlots));
+        sort($minuteSlots);
+        $hourSlots   = array_values(array_unique($hourSlots));
+        $minuteSlots = array_values(array_unique($minuteSlots));
 
         return !empty($hourSlots)
             ? ['BYHOUR' => $hourSlots, 'BYMINUTE' => $minuteSlots, 'INTERVAL' => 1]

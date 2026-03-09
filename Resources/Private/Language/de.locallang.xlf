@@ -23,6 +23,14 @@
 				<source>every %d %s</source>
 				<target>alle %d %s</target>
 			</trans-unit>
+			<trans-unit id="rrule.every.hour">
+				<source>every hour</source>
+				<target>jede Stunde</target>
+			</trans-unit>
+			<trans-unit id="rrule.every.minute">
+				<source>every minute</source>
+				<target>jede Minute</target>
+			</trans-unit>
 			<trans-unit id="rrule.unit.minutes">
 				<source>minutes</source>
 				<target>Minuten</target>

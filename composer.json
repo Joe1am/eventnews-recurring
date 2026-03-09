@@ -1,6 +1,6 @@
 {
   "name": "spielerj/eventnews-recurring",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "typo3-cms-extension",
   "description": "Adds recurring event support to georgringer/eventnews",
   "license": "GPL-2.0-or-later",

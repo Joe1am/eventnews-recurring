@@ -132,22 +132,13 @@ class IcsVeventsViewHelper extends AbstractViewHelper
         $interval = max(1, (int)$event->getRecurringInterval());
         $slots    = [];
 
-        // For minutely: determine the highest minute slot per hour (= last tick)
-        $maxMinuteSlot = 0;
-        if ($type === 'minutely') {
-            for ($m = 0; $m < 60; $m += $interval) {
-                $maxMinuteSlot = $m;
-            }
-        }
-
         foreach ($timeRanges as $range) {
-            $fromParts      = explode(':', $range['from']);
-            $toParts        = explode(':', $range['to']);
-            $fromH          = (int)($fromParts[0] ?? 0);
-            $fromM          = (int)($fromParts[1] ?? 0);
-            $toH            = (int)($toParts[0] ?? 0);
-            $toM            = (int)($toParts[1] ?? 0);
-            $toTotalMinutes = $toH * 60 + $toM;
+            $fromParts = explode(':', $range['from']);
+            $toParts   = explode(':', $range['to']);
+            $fromH     = (int)($fromParts[0] ?? 0);
+            $fromM     = (int)($fromParts[1] ?? 0);
+            $toH       = (int)($toParts[0] ?? 0);
+            $toM       = (int)($toParts[1] ?? 0);
 
             if ($type === 'hourly') {
                 // One slot per step-hour; only include hours whose slot fits the window
@@ -159,24 +150,17 @@ class IcsVeventsViewHelper extends AbstractViewHelper
                     ];
                 }
             } else {
-                // minutely: for each valid hour, emit one slot per minute position
-                for ($h = $fromH; $h <= $toH; $h++) {
-                    // Skip this hour if its last minute slot would exceed the window end
-                    if ($h * 60 + $maxMinuteSlot > $toTotalMinutes) {
-                        continue;
-                    }
-                    // First hour starts at fromM, subsequent hours start at minute 0
-                    $startMinuteInHour = ($h === $fromH) ? $fromM : 0;
-                    for ($m = $startMinuteInHour; $m < 60; $m += $interval) {
-                        if ($h * 60 + $m > $toTotalMinutes) {
-                            break;
-                        }
-                        $slotStart = $baseDate->setTime($h, $m, 0);
-                        $slots[]   = [
-                            'start' => $slotStart->getTimestamp(),
-                            'end'   => $slotStart->getTimestamp() + $duration,
-                        ];
-                    }
+                // minutely: iterate by total minutes from range start to range end
+                $startTotal = $fromH * 60 + $fromM;
+                $endTotal   = $toH * 60 + $toM;
+                for ($totalMin = $startTotal; $totalMin <= $endTotal; $totalMin += $interval) {
+                    $h         = intdiv($totalMin, 60);
+                    $m         = $totalMin % 60;
+                    $slotStart = $baseDate->setTime($h, $m, 0);
+                    $slots[]   = [
+                        'start' => $slotStart->getTimestamp(),
+                        'end'   => $slotStart->getTimestamp() + $duration,
+                    ];
                 }
             }
         }

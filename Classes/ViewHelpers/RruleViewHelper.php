@@ -67,7 +67,7 @@ class RruleViewHelper extends AbstractViewHelper
                 $text  = $this->renderHumanReadable($rrule);
             }
 
-            // Append excluded dates: ", außer am 17.03.2026 und 24.03.2026"
+            // Append excluded dates: ", except on 17.03.2026 and 24.03.2026"
             $excludeDates = method_exists($event, 'getRecurringExcludeDatesArray')
                 ? $event->getRecurringExcludeDatesArray()
                 : [];
@@ -107,7 +107,7 @@ class RruleViewHelper extends AbstractViewHelper
                     $ll   = 'LLL:EXT:eventnews_recurring/Resources/Private/Language/locallang.xlf:';
                     $lang = $this->getLanguageService();
                     if ($hasExcludedDates) {
-                        // Dates already appended → combine with "sowie" (no second "außer")
+                        // Dates already appended → combine with "and" (no second "except")
                         if ($excludeSchool && $excludePublic) {
                             $hint = $lang->sL($ll . 'rrule.alsoExcludingBothHolidays');
                         } elseif ($excludeSchool) {
@@ -154,10 +154,15 @@ class RruleViewHelper extends AbstractViewHelper
         $type     = $event->getRecurringType();
         $interval = max(1, (int)$event->getRecurringInterval());
 
-        // --- Interval part: "alle 30 Minuten" / "every 30 minutes" ---
-        $unitKey      = $type === 'minutely' ? 'rrule.unit.minutes' : 'rrule.unit.hours';
-        $unit         = $lang->sL($ll . $unitKey);
-        $intervalPart = sprintf($lang->sL($ll . 'rrule.every'), $interval, $unit);
+        // --- Interval part: "jede Stunde" / "alle 2 Stunden" ---
+        if ($interval === 1) {
+            $singularKey  = $type === 'minutely' ? 'rrule.every.minute' : 'rrule.every.hour';
+            $intervalPart = $lang->sL($ll . $singularKey);
+        } else {
+            $unitKey      = $type === 'minutely' ? 'rrule.unit.minutes' : 'rrule.unit.hours';
+            $unit         = $lang->sL($ll . $unitKey);
+            $intervalPart = sprintf($lang->sL($ll . 'rrule.every'), $interval, $unit);
+        }
 
         // --- Days part: "jeden Mittwoch" / "every Wednesday" ---
         $daysPart = '';
@@ -201,7 +206,7 @@ class RruleViewHelper extends AbstractViewHelper
             }
         }
 
-        // --- Time ranges part: "zwischen 12:00 und 16:00 Uhr" ---
+        // --- Time ranges part: "between 12:00 and 16:00" ---
         $timeRanges = $event->getRecurringTimeRangesArray();
         $between    = $lang->sL($ll . 'rrule.between');
         $and        = $lang->sL($ll . 'rrule.and');
@@ -218,7 +223,7 @@ class RruleViewHelper extends AbstractViewHelper
 
         $intervalTimePart = implode(' ', array_filter([$intervalPart, $timesPart]));
 
-        // --- Duration part: "(Dauer: 15 Minuten)" ---
+        // --- Duration part: "(Duration: 15 minutes)" ---
         $durationPart = '';
         $start = $event->getDatetime();
         $end   = $event->getEventEnd();
@@ -236,23 +241,15 @@ class RruleViewHelper extends AbstractViewHelper
      */
     private function getLanguageService(): \TYPO3\CMS\Core\Localization\LanguageService
     {
-        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
-        $locale  = 'en';
-        if ($request && $request->getAttribute('language')) {
-            $locale = $request->getAttribute('language')->getLocale()->getName();
-        }
         /** @var LanguageServiceFactory $factory */
         $factory = GeneralUtility::makeInstance(LanguageServiceFactory::class);
-        return $factory->create($locale);
+        return $factory->create($this->getSiteLocale());
     }
 
     private function getSiteLocale(): string
     {
-        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
-        if ($request && $request->getAttribute('language')) {
-            return $request->getAttribute('language')->getLocale()->getName();
-        }
-        return 'en';
+        $request = $this->renderingContext->getAttribute(\Psr\Http\Message\ServerRequestInterface::class);
+        return $request?->getAttribute('language')?->getLocale()->getName() ?? 'en';
     }
 
     /**
@@ -261,16 +258,7 @@ class RruleViewHelper extends AbstractViewHelper
     private function renderHumanReadable(RRule $rrule): string
     {
         try {
-            // Get current site language locale
-            $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
-            $locale = 'en'; // fallback
-            
-            if ($request && $request->getAttribute('language')) {
-                $language = $request->getAttribute('language');
-                $locale = $language->getLocale()->getName();
-            }
-            
-            // Get date format from TYPO3 settings
+            $locale     = $this->getSiteLocale();
             $dateFormat = $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'] ?? 'd.m.Y';
             
             return $rrule->humanReadable([

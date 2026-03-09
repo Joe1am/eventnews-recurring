@@ -18,6 +18,12 @@
 			<trans-unit id="rrule.every">
 				<source>every %d %s</source>
 			</trans-unit>
+			<trans-unit id="rrule.every.hour">
+				<source>every hour</source>
+			</trans-unit>
+			<trans-unit id="rrule.every.minute">
+				<source>every minute</source>
+			</trans-unit>
 			<trans-unit id="rrule.unit.minutes">
 				<source>minutes</source>
 			</trans-unit>
