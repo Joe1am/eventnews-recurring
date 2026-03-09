@@ -21,7 +21,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  * fall back to the classic single-VEVENT output.
  *
  * Usage:
- *   <enr:icsVevents event="{newsItem}" domain="kreativ-haus.de" />
+ *   <enr:icsVevents event="{newsItem}" domain="example.com" />
  */
 class IcsVeventsViewHelper extends AbstractViewHelper
 {
@@ -30,13 +30,17 @@ class IcsVeventsViewHelper extends AbstractViewHelper
     public function initializeArguments(): void
     {
         $this->registerArgument('event', News::class, 'The news event object', true);
-        $this->registerArgument('domain', 'string', 'Domain used in UID', false, 'kreativ-haus.de');
+        $this->registerArgument('domain', 'string', 'Domain used in UID (defaults to site base host)', false, '');
     }
 
     public function render(): string
     {
         $event  = $this->arguments['event'];
         $domain = $this->arguments['domain'];
+        if ($domain === '') {
+            $request = $this->renderingContext->getAttribute(\Psr\Http\Message\ServerRequestInterface::class);
+            $domain  = $request->getAttribute('site')->getBase()->getHost();
+        }
         $type   = $event->getRecurringType();
 
         if (!in_array($type, ['hourly', 'minutely'], true)) {

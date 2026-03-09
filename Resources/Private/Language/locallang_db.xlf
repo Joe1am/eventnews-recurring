@@ -126,6 +126,13 @@
 			<trans-unit id="tx_news_domain_model_news.recurring_monthly_weekday.description">
 				<source>Select the weekday that applies to the chosen week position above (e.g. "Third" + "Tuesday" = every third Tuesday).</source>
 			</trans-unit>
+			<trans-unit id="weekday.monday"><source>Monday</source></trans-unit>
+			<trans-unit id="weekday.tuesday"><source>Tuesday</source></trans-unit>
+			<trans-unit id="weekday.wednesday"><source>Wednesday</source></trans-unit>
+			<trans-unit id="weekday.thursday"><source>Thursday</source></trans-unit>
+			<trans-unit id="weekday.friday"><source>Friday</source></trans-unit>
+			<trans-unit id="weekday.saturday"><source>Saturday</source></trans-unit>
+			<trans-unit id="weekday.sunday"><source>Sunday</source></trans-unit>
 		</body>
 	</file>
 </xliff>

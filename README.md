@@ -1,9 +1,5 @@
 # TYPO3 Extension: Recurring Events for News
 
-A TYPO3 extension that adds recurring event functionality to `EXT:news` and `EXT:eventnews`. Generate event occurrences dynamically based on recurrence rules (RFC 5545) without creating duplicate database records.
-
-## Description
-
 This extension extends Georg Ringer's excellent [news](https://github.com/georgringer/news) and [eventnews](https://github.com/georgringer/eventnews) extensions with powerful recurring event capabilities. Events can repeat on various schedules with full support for:
 
 - **Recurrence types:** minutely, hourly, daily, weekly, monthly, yearly
@@ -11,7 +7,7 @@ This extension extends Georg Ringer's excellent [news](https://github.com/georgr
 - **Monthly weekday mode** (e.g., every 3rd Tuesday, last Friday of the month)
 - **Time windows for hourly/minutely events** (e.g., every 30 minutes between 08:00–12:00 and 16:00–22:00)
 - **Date exclusions** – manually exclude individual dates via a custom date picker
-- **School holiday exclusion** – skip occurrences during school holidays (via ICS URL)
+- **School holiday exclusion** – skip occurrences during school holidays (via ICS URL, e.g. from [ferienwiki.de](https://www.ferienwiki.de))
 - **Public holiday exclusion** – skip occurrences on public holidays (via ICS URL)
 - **End date or occurrence count limits**
 - **RFC 5545 compliant iCalendar export** with `RRULE`, `EXDATE`, and per-slot `VEVENT` entries
@@ -46,7 +42,10 @@ vendor/bin/typo3 database:updateschema
 
 ### Holiday ICS URLs (Site Settings)
 
-School and public holiday calendars are configured per site via TYPO3 Site Settings. Navigate to **Sites → Edit Site → Eventnews Recurring → Holiday Calendars** and enter one or more ICS URLs (e.g. from `ferien-api.de` or the official Ferientermine portal):
+School and public holiday calendars are configured per site via TYPO3 Site Settings:
+
+1. Navigate to **Sites → Edit Site** and add the **"Eventnews Recurring"** site set under **Sets for this Site**.
+2. Then navigate to **Sites → Settings → Eventnews Recurring → Holiday Calendars** and enter one or more ICS URLs (e.g. from [ferienwiki.de](https://www.ferienwiki.de)):
 
 | Setting | Description |
 |---|---|

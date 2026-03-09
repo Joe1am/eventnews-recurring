@@ -162,6 +162,13 @@
 				<source>Weekday</source>
 				<target>Wochentag</target>
 			</trans-unit>
+			<trans-unit id="weekday.monday"><source>Monday</source><target>Montag</target></trans-unit>
+			<trans-unit id="weekday.tuesday"><source>Tuesday</source><target>Dienstag</target></trans-unit>
+			<trans-unit id="weekday.wednesday"><source>Wednesday</source><target>Mittwoch</target></trans-unit>
+			<trans-unit id="weekday.thursday"><source>Thursday</source><target>Donnerstag</target></trans-unit>
+			<trans-unit id="weekday.friday"><source>Friday</source><target>Freitag</target></trans-unit>
+			<trans-unit id="weekday.saturday"><source>Saturday</source><target>Samstag</target></trans-unit>
+			<trans-unit id="weekday.sunday"><source>Sunday</source><target>Sonntag</target></trans-unit>
 			<trans-unit id="tx_news_domain_model_news.recurring_monthly_weekday.description">
 				<source>Select the weekday that applies to the chosen week position above (e.g. "Third" + "Tuesday" = every third Tuesday).</source>
 				<target>Wählen Sie den Wochentag passend zur gewählten Wochenposition (z. B. „Dritten" + „Dienstag" = jeden dritten Dienstag).</target>
